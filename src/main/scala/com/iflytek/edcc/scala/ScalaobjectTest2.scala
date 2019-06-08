@@ -28,6 +28,7 @@ object ScalaTest2 {
   }
 }
 
+//伴生类
 class Demo {
   @throws(classOf[NumberFormatException])
   def test(): Unit ={
@@ -40,6 +41,7 @@ class Demo {
 
 }
 
+//伴生对象
 object Demo {
 
   def apply(): Demo = {

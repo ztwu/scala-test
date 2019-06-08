@@ -66,6 +66,12 @@ object ScalaTest {
     test3.age = 25
     println("test6 : "+test3.name+":"+test3.age)
 
+    val dog1 = new Dog1("ceshi");
+    dog1.test1()
+
+    val dog2 = new Dog2("ceshi",12)
+    dog2.test1()
+
   }
 }
 
@@ -132,7 +138,7 @@ class People4(val name : String , val age : Int) {
 
 }
 
-//参数会被默认定义为私有变量private,没有生成setter和getter方法
+//主构造函数的参数会被默认定义为私有变量private,没有生成setter和getter方法
 class People5(namep : String , agep : Int) {
   //无参的构造函数
   def this(){
@@ -156,12 +162,20 @@ class People5(namep : String , agep : Int) {
 
 }
 
+//scala中提供了一种特殊的类，用case class进行声明，中文也可以称作样例类。
+// case class其实有点类似于Java中的JavaBean的概念。
+// 即只定义field，并且由Scala编译时自动提供getter和setter方法，但是没有method。
+
+//case class的主构造函数接收的参数通常不需要使用var或val修饰，Scala自动就会使用val修饰
+// （但是如果你自己使用var修饰，那么还是会按照var来）。
+//scala自动为case class定义了伴生对象，也就是object，并且定义了apply()方法，该方法接收主构造函数中相同的参数，并返回case class对象。
 case class MyCaseClass(){
 
 }
 
 //object下的成员都是静态的 ,若有同名的class,这其作为它的伴生类
 //在object中一般可以为伴生类做一些初始化等操作
+//对象object为无参的构造方法
 object People1 {
 
   def apply(): People1 = {
@@ -187,8 +201,36 @@ object People2 {
 
 }
 
+//特征类似抽象类，存在实现和未实现的方法
+//extends trait with trait1 with trait2
 trait People1t {
+
   def test() = {
     println("people trait test")
   }
+
+}
+
+class Dog1(name:String) {
+  def this() = {
+    this("test1")
+  }
+
+  def test1()={
+    println("test dog1")
+  }
+
+}
+
+//私有构造函数
+class Dog2 private(name:String){
+
+  def this(name:String,id:Int) = {
+    this("test2")
+  }
+
+  def test1()={
+    println("test dog2")
+  }
+
 }

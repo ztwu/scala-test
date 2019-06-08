@@ -17,12 +17,9 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
   * Description
   */
 
-object ScalaTest1 {
+object ScalacollectionTest {
+
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName(this.getClass.getName)
-    val sc = new SparkContext(conf)
-    val data1 = sc.makeRDD(1 until 100, 1)
-    data1.foreach(println)
 
     //Map 有两种类型，可变与不可变，区别在于可变对象可以修改它，而不可变对象不可以。
     //默认情况下 Scala 使用不可变 Map。如果你需要使用可变集合，你需要显式的引入 import scala.collection.mutable.Map 类
